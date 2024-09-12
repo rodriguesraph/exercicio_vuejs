@@ -1,47 +1,91 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
+
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
+  <div class="container">
+    <div class="block">
+      <div class="row">
+        <div class="col title">
+          <h1><i class="bi bi-calculator-fill"></i>Calculadora Simples</h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <select class="form-control">
+            <option value="adicao">Adição</option>
+            <option value="subtracao">Subtração</option>
+            <option value="multiplicacao">Multiplicação</option>
+            <option value="divisao">Divisão</option>
+          </select>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-3">
+          <form>
+            <input type="number" placeholder="Valor 1" class="form-control">
+          </form>
+        </div>
+        <div class="col-1">
+          <h2>+</h2>
+        </div>
+        <div class="col-3">
+          <form>
+            <input type="number" placeholder="Valor 2" class="form-control">
+          </form>
+        </div>
+        <div class="col-1">
+          <h2>=</h2>
+        </div>
+        <div class="col-3">
+          <h2>1000</h2>
+        </div>
+      </div>
     </div>
-  </header>
-
-  <main>
-    <TheWelcome />
-  </main>
+  </div>
 </template>
 
 <style scoped>
-header {
-  line-height: 1.5;
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
 }
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
+.block {
+  background-color: rgb(219, 248, 243);
+  padding: 16px;
+  border-radius: 16px;
 }
 
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
+.title {
+  align-items: center;
+  text-align: center;
+  margin-bottom: 8px;
+}
 
-  .logo {
-    margin: 0 2rem 0 0;
-  }
+.title h1 {
+  background: -webkit-linear-gradient(45deg, #09009f, #00ff95 80%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: bold;
+}
 
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
+.title i {
+  margin-right: 8px;
+}
+
+h2 {
+  align-items: center;
+  text-align: center;
+}
+
+select {
+  margin-bottom: 16px;
+}
+
+form input {
+  width: 100%;
 }
 </style>
