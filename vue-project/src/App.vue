@@ -1,4 +1,36 @@
 <script setup>
+import { reactive } from 'vue';
+
+const dados = reactive({
+  valor1: 0,
+  valor2: 0,
+  operacao: 'adicao',
+  simbolo: '+',
+  resultado: 0,
+})
+
+const fazCalculo = () => {
+  const { operacao } = dados;
+
+  switch (operacao) {
+    case 'subtracao':
+      dados.resultado = dados.valor1 - dados.valor2;
+      dados.simbolo = '-';
+      return dados.resultado;
+    case 'multiplicacao':
+      dados.resultado = dados.valor1 * dados.valor2;
+      dados.simbolo = '*';
+      return dados.resultado;
+    case 'divisao':
+      dados.resultado = dados.valor1 / dados.valor2;
+      dados.simbolo = '/';
+      return dados.resultado;
+    default:
+      dados.resultado = parseFloat(dados.valor1) + parseFloat(dados.valor2);
+      dados.simbolo = '+';
+      return dados.resultado;
+  }
+}
 
 </script>
 
@@ -12,7 +44,7 @@
       </div>
       <div class="row">
         <div class="col">
-          <select class="form-control">
+          <select @change="evento => dados.operacao = evento.target.value" class="form-control">
             <option value="adicao">Adição</option>
             <option value="subtracao">Subtração</option>
             <option value="multiplicacao">Multiplicação</option>
@@ -22,23 +54,25 @@
       </div>
       <div class="row">
         <div class="col-3">
-          <form>
-            <input type="number" placeholder="Valor 1" class="form-control">
+          <form @keyup="fazCalculo">
+            <input :value="dados.valor1" @keyup="evento => dados.valor1 = evento.target.value" type="number"
+              placeholder="Valor 1" class="form-control">
           </form>
         </div>
         <div class="col-1">
-          <h2>+</h2>
+          <h2>{{ dados.simbolo }}</h2>
         </div>
         <div class="col-3">
-          <form>
-            <input type="number" placeholder="Valor 2" class="form-control">
+          <form @keyup="fazCalculo">
+            <input :value="dados.valor2" @keyup="evento => dados.valor2 = evento.target.value" type="number"
+              placeholder="Valor 2" class="form-control">
           </form>
         </div>
         <div class="col-1">
           <h2>=</h2>
         </div>
         <div class="col-3">
-          <h2>1000</h2>
+          <h2>{{ dados.resultado }}</h2>
         </div>
       </div>
     </div>
