@@ -11,22 +11,24 @@ const dados = reactive({
 
 const fazCalculo = () => {
   const { operacao } = dados;
+  const valor1 = parseFloat(dados.valor1);
+  const valor2 = parseFloat(dados.valor2);
 
   switch (operacao) {
     case 'subtracao':
-      dados.resultado = dados.valor1 - dados.valor2;
+      dados.resultado = valor1 - valor2;
       dados.simbolo = '-';
       return dados.resultado;
     case 'multiplicacao':
-      dados.resultado = dados.valor1 * dados.valor2;
+      dados.resultado = valor1 * valor2;
       dados.simbolo = '*';
       return dados.resultado;
     case 'divisao':
-      dados.resultado = dados.valor1 / dados.valor2;
+      dados.resultado = valor1 / valor2;
       dados.simbolo = '/';
       return dados.resultado;
     default:
-      dados.resultado = parseFloat(dados.valor1) + parseFloat(dados.valor2);
+      dados.resultado = valor1 + valor2;
       dados.simbolo = '+';
       return dados.resultado;
   }
@@ -43,7 +45,7 @@ const fazCalculo = () => {
       </div>
       <div class="row">
         <div class="col">
-          <select @change="evento => dados.operacao = evento.target.value" class="form-control">
+          <select @change="evento => dados.operacao = evento.target.value" @click="fazCalculo" class="form-control">
             <option value="adicao">Adição</option>
             <option value="subtracao">Subtração</option>
             <option value="multiplicacao">Multiplicação</option>
